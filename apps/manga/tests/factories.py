@@ -2,7 +2,16 @@ from datetime import datetime
 
 import factory
 
-from apps.manga.models.models import Manga
+from apps.manga.models.models import Manga, Author
+
+
+class AuthorFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Author
+        django_get_or_create = ('name', 'surname')
+    name = ""
+    surname = ""
+    nationality = ""
 
 
 class MangaFactory(factory.django.DjangoModelFactory):

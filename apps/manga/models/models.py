@@ -13,13 +13,19 @@ class Season(models.Model):
 
 
 class Author(models.Model):
-    pass
+    name = models.CharField(max_length=255, blank=True)
+    surname = models.CharField(max_length=64, blank=True)
+    birth = models.DateTimeField(blank=True)
+    death = models.DateTimeField(blank=True)
+    nationality = models.CharField(blank=True, max_length=128)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Manga(models.Model):
     title = models.CharField(max_length=255)
     about = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ManyToManyField(Author)
     publication_year = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
